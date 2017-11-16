@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition    template="index.xhtml"
+                   xmlns="http://www.w3.org/1999/xhtml"
+                   xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                   xmlns:h="http://xmlns.jcp.org/jsf/html"
+                   xmlns:p="http://primefaces.org/ui"
+                   xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="principales">
+        <h2>AVALIAR ALUNOS</h2>
+        <h:form>
+            <p:accordionPanel>
+                <p:tab title="Avaliar Aluno">
+
+
+                    <p:outputLabel>Nova Avaliação: </p:outputLabel>
+
+                    <p:selectOneMenu value="#{treinoBean.treinoSelecionado}" converter="treinoConverter">
+                        <p:ajax listener="#{treinoBean.alterouTreino()}" update="exercicio7 grupo"/>
+                        <f:selectItem itemLabel="--Selecione o treino--" itemValue="" />   
+                        <f:selectItems value="#{treinoBean.listaTreinosAva}" var="treino" itemLabel="#{treino.nome}" itemValue="#{treino}"/>
+                    </p:selectOneMenu>
+
+                    <p:selectOneMenu id="exercicio7" value="#{treinoBean.exercicioSelecionado}" converter="exercicioConverter">
+                        <p:ajax listener="#{treinoBean.naoExisteExercicio(alunoBean)}" update="desempenho"/>
+                        <f:selectItem itemLabel="--Selecione o exercicio--" itemValue=""/>
+                        <f:selectItems value="#{treinoBean.listaExerciciosAva}" var="exerce" itemLabel="#{exerce.nome}" itemValue="#{exerce}"/>
+                    </p:selectOneMenu>
+
+                    <p:selectOneMenu id="grupo" value="#{treinoBean.grupoSelecionado}" converter="grupoAlunosConverter">
+                        <p:ajax listener="#{treinoBean.alterouGrupo()}" update="aluno"/>
+                        <f:selectItem itemLabel="--Selecione o grupo--" itemValue=""/>
+                        <f:selectItems value="#{treinoBean.listaGruposAva}" var="grupo" itemLabel="#{grupo.nome}" itemValue="#{grupo}"/>
+                    </p:selectOneMenu>
+
+                    <p:selectOneMenu id="aluno" value="#{alunoBean.alunoSelecionado}" converter="alunoConverter">
+                        <p:ajax listener="#{alunoBean.alterouAluno(treinoBean)}" update="desempenho" />
+                        <f:selectItem itemLabel="--Selecione o aluno--" itemValue=""/>
+                        <f:selectItems value="#{treinoBean.listaAlunosAva}" var="aluno" itemLabel="#{aluno.pessoa.nome}" itemValue="#{aluno}"/>
+                    </p:selectOneMenu>
+
+                    <p:panel id="desempenho" header="Avaliação de Desempenho" visible="#{alunoBean.exibeTabelations}" style="margin-bottom:20px">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <p:outputLabel>Acertos: </p:outputLabel>
+                            <p:spinner min="0" max="100" value="#{avaliacaoBean.avaliacao.qAcertos}"/>
+                            <p:outputLabel>Erros: </p:outputLabel>
+                            <p:spinner min="0" max="100" value="#{avaliacaoBean.avaliacao.qErros}"/>
+                            <p:commandButton value="Registrar Avaliação" actionListener="#{avaliacaoBean.salvar(avaliacaoBean.avaliacao, alunoBean, treinoBean)}" ajax="false" />
+                        </h:panelGrid>
+                    </p:panel>
+
+                </p:tab>
+                <p:tab title="Visualizar Avaliacoes">
+
+                    <p:outputLabel>Visualizar Avaliacoes: </p:outputLabel>
+
+                    <p:selectOneMenu value="#{treinoBeanBuscar.treinoSelecionado}" converter="treinoConverter">
+                        <p:ajax listener="#{treinoBeanBuscar.alterouTreino()}" update="exercicio3 grupo2"/>
+                        <f:selectItem itemLabel="--Selecione o treino--" itemValue="" />   
+                        <f:selectItems value="#{treinoBeanBuscar.listaTreinosAva}" var="treino2" itemLabel="#{treino2.nome}" itemValue="#{treino2}"/>
+                    </p:selectOneMenu>
+
+                    <p:selectOneMenu id="exercicio3" value="#{alunoBeanBuscar.exercicioSelecionado}" converter="exercicioConverter">
+                        <p:ajax update="desempenhoChart"/>
+                        <f:selectItem itemLabel="--Selecione o exercicio--" itemValue=""/>
+                        <f:selectItems value="#{treinoBeanBuscar.listaExerciciosAva}" var="exerc3" itemLabel="#{exerc3.nome}" itemValue="#{exerc3}"/>
+                    </p:selectOneMenu>
+
+                    <p:selectOneMenu id="grupo2" value="#{treinoBeanBuscar.grupoSelecionado}" converter="grupoAlunosConverter">
+                        <p:ajax listener="#{treinoBeanBuscar.alterouGrupo()}" update="aluno2"/>
+                        <f:selectItem itemLabel="--Selecione o grupo--" itemValue=""/>
+                        <f:selectItems value="#{treinoBeanBuscar.listaGruposAva}" var="grupo2" itemLabel="#{grupo2.nome}" itemValue="#{grupo2}"/>
+                    </p:selectOneMenu>
+
+                    <p:selectOneMenu id="aluno2" value="#{alunoBeanBuscar.alunoSelecionado}" converter="alunoConverter">
+                        <p:ajax listener="#{alunoBeanBuscar.alterouAluno(treinoBean)}" update="desempenhoChartForm desempenhoChart" />
+                        <f:selectItem itemLabel="--Selecione o aluno--" itemValue=""/>
+                        <f:selectItems value="#{treinoBeanBuscar.listaAlunosAva}" var="aluno2" itemLabel="#{aluno2.pessoa.nome}" itemValue="#{aluno2}"/>
+                    </p:selectOneMenu>
+
+
+                    <p:panel visible="#{alunoBeanBuscar.mostraGraficos}" id="desempenhoChartForm">
+
+                        <p:pieChart  id="desempenhoChart" showDataLabels="true" value="#{desempenhoView.carregaPieChart(alunoBeanBuscar)}" title="Média de Avaliações" legendPosition="w" diameter="150"/>
+
+                    </p:panel>
+                </p:tab>
+
+
+
+            </p:accordionPanel>
+
+
+
+
+
+
+
+
+        </h:form>
+    </ui:define>
+</ui:composition>

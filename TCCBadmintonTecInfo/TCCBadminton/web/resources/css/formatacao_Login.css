@@ -1,0 +1,70 @@
+body {
+    font-family: arial;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    color: whitesmoke;
+   height: 100%;
+    background-image: url(backgroundSportechInteiro.png);
+}
+
+#header {
+    margin: 0;
+    width: 80%;
+    height: 80px;
+    
+ //   background-image: url(headerBGround.png);
+  //  background-repeat: repeat-x;
+}
+
+#imgLeft {
+    float: left;
+    width: 33%;
+    height: 100px;
+    
+    //background-image: url(imgLeft.png);
+    //background-repeat: no-repeat;
+    //background-size: 100% 100%;
+}
+
+#login {
+    float: left;
+    width: 42%;
+    height: 280px;
+    background: #78b5ff;
+    opacity: 0.85;
+    padding-left: 14px;
+    border-radius: 10px;
+    border-style: inset;
+}
+
+
+#tfLogin {
+    margin-bottom: 30px;
+}
+
+#lbLogin {
+    margin-left: 130px;
+    margin-bottom: 30px;
+}
+
+#tfPssword {
+
+}
+
+
+
+#lbPassword {
+    margin-left: 130px; 
+}
+
+#btLogin {
+    float:left;
+    margin-left: 25px;
+}
+
+#forgotPw {
+    margin-left: 33.3333%;
+    
+}
+

@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>SPORTECH BADMINTON</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link type="text/css" href="css/formatacao_Treinador.css" rel="stylesheet"/>
+    </h:head>
+    <h:body>
+
+        <div id="header">
+            <!--cabeçalho-->
+        </div>
+
+        <div id="imgLeft">
+            <!--imagem esquerda-->
+        </div>
+
+        <div id="login">
+            <h:form>
+                <h1>CADASTRO DE TREINADOR</h1>
+                <h:panelGrid id="opacidade" columns="2" cellspacing="14px" style="  margin: 30px;">
+                    <p:outputLabel for="trainerName">Nome Completo:</p:outputLabel>
+                    <p:outputLabel for="trainerAdress">Endereço:</p:outputLabel>
+                    <p:inputText id="trainerName" value="#{treinadorBean.pessoa.nome}" required="true" requiredMessage="Você precisa informar um nome"/>
+                    <p:inputText id="trainerAdress" value="#{treinadorBean.pessoa.endereco}" required="true" requiredMessage="Você precisa informar um endereço"/>
+
+
+                    <p:outputLabel for="trainerCPF">CPF:</p:outputLabel>
+                    <p:outputLabel for="trainerUserName">Nome de Usuário:</p:outputLabel>
+                    <p:inputMask mask="999.999.999-99"   id="trainerCPF" value="#{treinadorBean.pessoa.CPF}" required="true" requiredMessage="Você precisa informar um CPF válido" validatorMessage="Informe apenas números sem pontos ou traços"/>
+
+                    <p:inputText id="trainerUserName" value="#{treinadorBean.pessoa.usuario}" required="true" requiredMessage="Você precisa informar um nome de usuário"/>
+
+
+                    <p:outputLabel for="trainerEmail">E-Mail:</p:outputLabel>
+                    <p:outputLabel for="trainerCREF" >CREF:</p:outputLabel >
+                    <p:inputText id="trainerEmail"  value="#{treinadorBean.pessoa.email}" required="true" requiredMessage="Você precisa informar um e-mail"/>
+                    <p:inputMask mask="999.999.999-99" id="trainerCREF" value="#{treinadorBean.treinador.CREF}" validatorMessage="Informe apenas números sem pontos ou traços"/>
+
+
+                    <p:outputLabel for="trainerPassword">Senha:</p:outputLabel>
+                    <p:outputLabel for="trainerRPassword">Repetir Senha:</p:outputLabel>
+                    <p:password id="trainerPassword" value="#{treinadorBean.pessoa.senha}" required="true" requiredMessage="Você precisa informar uma senha"/>
+                    <p:password id="trainerRPassword" value="#{treinadorBean.pessoa.testSenha}"  required="true" requiredMessage="Você precisa reinformar a senha"/>
+
+                    <span></span>
+                    <span></span>
+
+                </h:panelGrid>
+
+                <p:commandButton id="btLogin" style="margin-left: 35%" value="Cadastrar" action="#{treinadorBean.salvar()}"/><br/>
+                <p:messages autoUpdate="true"></p:messages>
+
+
+
+
+
+            </h:form>
+        </div>
+
+        <div id="imgRight">
+            <!--imagem direita-->
+        </div>
+
+    </h:body>
+</html>
+

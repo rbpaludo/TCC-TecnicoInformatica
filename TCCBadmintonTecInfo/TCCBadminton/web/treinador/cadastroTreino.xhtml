@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition template="index.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <ui:define name="principales">
+        <h2>CADASTRO DE TREINOS</h2>
+        <h:form id="formTreinos">
+
+            <ul id="panel1" style="width: 70%; float: left">
+
+                <h:inputHidden value="#{treinoBean.t.id}"/>
+
+                <p:panelGrid columns="6">
+                    <p:outputLabel>Nome do Treino:</p:outputLabel>
+                    <p:inputText value="#{treinoBean.t.nome}" size="14"/>
+                    <p:outputLabel >Data do Treino:</p:outputLabel>
+                    <p:calendar size="10" id="dataDoTreino" value="#{treinoBean.t.data}" pattern="dd-MM-yyyy" locale="pt"/>
+                    <p:outputLabel>Horário do Treino:</p:outputLabel>
+                    <p:calendar  size="6" id="horarioDoTreino" value="#{treinoBean.t.horario}" pattern="HH:mm" timeOnly="true" locale="pt" />
+                </p:panelGrid>
+
+
+
+
+            </ul>
+            <ul>
+
+                <h:panelGrid id="panel2" columns="2" cellspacing="7px" style="float: left; width: 45%">
+                    
+                        <p:outputLabel>Exercícios</p:outputLabel>
+                 
+                    <p:outputLabel>Grupos de Alunos</p:outputLabel>
+                    <p:pickList id="pickList" converter="exercicioConverter" value="#{pickListExercicioView.exercicios}" var="exercicio" itemLabel="#{exercicio.getNome()}" itemValue="#{exercicio}" showSourceFilter="true" showTargetFilter="true" >
+                        <f:facet name="sourceCaption">Todos os Exercícios</f:facet>
+                        <f:facet name="targetCaption">Exercícios Selecionados</f:facet>
+                    </p:pickList>
+
+                    <p:pickList id="pickList2" converter="grupoAlunosConverter" value="#{pickListGrupoView.grupos}" var="grupo" itemLabel="#{grupo.getNome()}" itemValue="#{grupo}" showSourceFilter="true" showTargetFilter="true" >       
+                        <f:facet name="sourceCaption">Todos os Grupos Disponíveis</f:facet>
+                        <f:facet name="targetCaption">Grupos Selecionados</f:facet>
+                    </p:pickList>
+                    <p:commandButton id="salvarTreino" actionListener="#{treinoBean.salvar(pickListGrupoView,pickListExercicioView , pickListExercicioView.exerciciosSelecionados, pickListGrupoView.gruposSelecionados, request.userPrincipal.name)}" value="Salvar Treino" ajax="false"  />
+
+                </h:panelGrid>
+
+
+
+
+
+
+                <p:dataTable emptyMessage="Nenhum Treino Encontrado" filteredValue="#{treinoBean.filtroTreino}" paginatorPosition="bottom"  pageLinks="10" paginator="true" rows="10" widgetVar="exercicioTable" style="float: left; width: 87%" id="dataTreinos" var="treino" value="#{treinoBean.listarTreinosDoTreinador(request.userPrincipal.name)}" scrollHeight="180" scrollable="true">
+
+                    <p:column headerText="Nome do Treino" filterBy="nome" filterMatchMode="contains">
+                        <h:inputHidden value="#{treino}" converter="treinoConverter"/>
+                        <h:outputText value="#{treino.nome}"/>
+                        <h:inputHidden value="#{treino.treinador}" converter="treinadorConverter"/>
+                    </p:column>
+                    <p:column headerText="Opções">
+
+                        <h:commandLink actionListener="#{treinoBean.setTreino(treino, pickListGrupoView, pickListExercicioView)}"   value="Editar" style="margin-right: 10px"  />
+                        <h:commandLink actionListener="#{treinoBean.excluir(treino, pickListGrupoView, pickListExercicioView)}" value="Deletar"/>
+
+                    </p:column>
+                </p:dataTable>
+
+
+
+            </ul>
+        </h:form>
+
+
+    </ui:define>
+</ui:composition>

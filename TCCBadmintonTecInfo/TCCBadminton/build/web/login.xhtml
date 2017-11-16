@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>SPORTECH BADMINTON - LOGIN</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link type="text/css" href="css/formatacao_Login.css" rel="stylesheet"/>
+    </h:head>
+    <h:body>
+
+        <div id="header">
+            <!--cabeçalho-->
+        </div>
+
+        <div id="imgLeft">
+            <!--imagem esquerda-->
+        </div>
+
+        <div id="login">
+
+            <form action="j_spring_security_check" method="post">
+
+
+                <h1 >LOGIN</h1>
+                <h:panelGrid id="opacidade" columns="2" cellspacing="15px" style="  margin: 30px;">
+                    <h:outputLabel >Nome de Usuário</h:outputLabel>
+                    <h:outputLabel style="margin-left: 25px">Senha</h:outputLabel>
+                    <p:inputText id="j_username"/>
+                    <p:password id="j_password" style="margin-left: 25px"/>
+
+
+
+                </h:panelGrid>
+
+
+                <input type="submit" value="Efetuar Login" style="margin-bottom: 10px;margin-right: 50px; float:right;border-radius: 5px; width: 160px; height: 40px; font-size: 20px; background-color: rgba(255,255,255, 0.7); border-color: rgba(255,255,255, 0.8); color: #003366 "/><br/>
+                <a href="CadastroDeTreinador.jsf" style="opacity: 0.8;">Não é cadastrado ainda ?</a><br/>
+
+            </form>
+
+        </div>
+
+        <div id="imgRight">
+            <h:messages style="color: transparent;"></h:messages>
+            <!--imagem direita-->
+        </div>
+
+    </h:body>
+</html>
+
+
+

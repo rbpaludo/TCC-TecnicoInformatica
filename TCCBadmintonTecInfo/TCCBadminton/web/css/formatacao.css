@@ -1,0 +1,69 @@
+body {
+    font-family: arial;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    float: left;
+}
+
+#header {
+    margin: 0;
+    width: 100%;
+    height: 80px;
+    
+    background-image: url(headerBGround.png);
+    background-repeat: repeat-x;
+}
+
+#imgLeft {
+    float: left;
+    width: 33%;
+    height: 700px;
+    
+    //background-image: url(imgLeft.png);
+    //background-repeat: no-repeat;
+    //background-size: 100% 100%;
+}
+
+#login {
+    float: left;
+    width: 34%;
+    height: 700px;
+}
+
+#tfLogin {
+    margin-bottom: 30px;
+}
+
+#lbLogin {
+    margin-left: 130px;
+    margin-bottom: 30px;
+}
+
+#tfPssword {
+
+}
+
+#lbPassword {
+    margin-left: 130px; 
+}
+
+#btLogin {
+    float:left;
+    margin-left: 30px;
+}
+
+#forgotPw {
+    margin-left: 33.3333%;
+    
+}
+
+#imgRight {
+    float: left;
+    width: 33%;
+    height: 700px;
+    
+    //background-image: url(imgRight.png);
+    //background-repeat: no-repeat;
+    //background-size: 100% 100%;
+}

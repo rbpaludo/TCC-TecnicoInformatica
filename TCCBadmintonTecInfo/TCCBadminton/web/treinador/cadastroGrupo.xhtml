@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition template="index.xhtml" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <ui:define name="principales" >
+
+        <h2>CADASTRO DE GRUPOS</h2>
+        <h:form>
+
+            <div style="width: 45%; float:left">
+                <h:inputHidden value="#{grupoAlunosBean.grupoAlunos.id}"/>
+                <h:inputHidden value="#{grupoAlunosBean.grupoAlunos.treinador}" converter="treinadorConverter" />
+                <h:panelGrid columns="1" cellpadding="8px">
+
+                    <p:outputLabel for="nomeGrupo">Nome do Grupo:</p:outputLabel>
+                    <p:inputText id="nomeGrupo" value="#{grupoAlunosBean.grupoAlunos.nome}"></p:inputText>
+
+
+
+
+
+
+
+                    <p:pickList  id="pickList" converter="alunoConverter" value="#{pickListView.alunos}" var="alunos" style="min-width: 250px; max-width: 250px"  itemLabel="#{alunos.getPessoa().getUsuario()}" itemValue="#{alunos}" showSourceFilter="true" showTargetFilter="true" >
+                        <f:facet name="sourceCaption">Todos os Alunos</f:facet>
+                        <f:facet name="targetCaption">Alunos Selecionados</f:facet>
+
+                    </p:pickList>
+                    <p:commandButton ajax="false" id="salvarGrupo" actionListener="#{grupoAlunosBean.salvar(pickListView, request.userPrincipal.name)}" value="Salvar Grupo"  />
+                </h:panelGrid>
+            </div>
+            <div style="width: 55%; float:left">
+
+
+                  
+                
+              
+                        <p:dataTable emptyMessage="Nenhum Grupo Encontrado" filteredValue="#{grupoAlunosBean.filtroGrupo}" paginatorPosition="bottom"  pageLinks="10" paginator="true" rows="10" widgetVar="grupoTable" id="dataGrupos"  var="grupo" value="#{grupoAlunosBean.listarGruposDoTreinador(request.userPrincipal.name)}">
+
+                    <p:column headerText="Nome do Grupo" filterBy="nome" filterMatchMode="contains" >
+                        <h:inputHidden value="#{grupo}" converter="grupoAlunosConverter"/>
+                        <h:outputText value="#{grupo.nome}"/>
+                        <h:inputHidden value="#{grupo.treinador}" converter="treinadorConverter"/>
+                    </p:column>
+                    <p:column headerText="Opções">
+                        <h:commandLink actionListener="#{grupoAlunosBean.setGrupoAlunos(grupo, pickListView)}"  value="Editar" style="margin-right: 10px"/>
+                        <h:commandLink actionListener="#{grupoAlunosBean.excluir(grupo, pickListView)}" value="Deletar"/>
+                    </p:column>
+                </p:dataTable>
+            </div>
+        </h:form>
+
+    </ui:define>
+</ui:composition>

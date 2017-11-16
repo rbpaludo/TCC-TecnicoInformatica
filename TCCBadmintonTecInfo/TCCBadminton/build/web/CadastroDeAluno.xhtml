@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>SPORTECH BADMINTON</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link type="text/css" href="css/formatacao_Aluno.css" rel="stylesheet"/>
+    </h:head>
+    <h:body>
+
+        <div id="header">
+            <!--cabeçalho-->
+        </div>
+
+        <div id="imgLeft">
+            <!--imagem esquerda-->
+        </div>
+
+        <div id="login">
+            <h:form>
+                <h1>CADASTRO DE ALUNO</h1>
+                <h:inputHidden value="#{alunoBean.pessoa.id}"/>
+                <h:inputHidden value="#{alunoBean.pessoa}" converter="pessoaConverter"/>
+                <h:inputHidden value="#{alunoBean.aluno}" converter="alunoConverter"/>
+                <h:inputHidden value="#{alunoBean.aluno.id}"/>
+                <h:panelGrid id="opacidade" columns="2" cellspacing="14px" style="  margin: 30px;">
+                    <p:outputLabel for="studentName">Nome Completo:</p:outputLabel>
+                    <p:outputLabel for="studentAdress">Endereço:</p:outputLabel>
+                    <p:inputText id="studentName" value="#{alunoBean.pessoa.nome}" required="true" requiredMessage="Você precisa informar um nome"/>
+
+
+                    <p:inputText id="studentAdress" value="#{alunoBean.pessoa.endereco}" required="true" requiredMessage="Voc~e precisa informar um endereço"/>
+
+                    <span></span>
+                    <p:outputLabel for="studentCPF">CPF:</p:outputLabel>
+                    <span></span>
+                    <p:inputText id="studentCPF"  value="#{alunoBean.pessoa.CPF}" required="true" requiredMessage="Você precisa informar um CPF válido"/>
+
+
+                    <p:outputLabel for="studentUserName">Nome de Usuário:</p:outputLabel>
+                    <p:outputLabel for="studentEmail">E-Mail:</p:outputLabel>
+                    <p:inputText id="studentUserName"  value="#{alunoBean.pessoa.usuario}" required="true" requiredMessage="Você precisa informar um nome de usuário"/>
+                    <p:inputText id="studentEmail" value="#{alunoBean.pessoa.email}" required="true" requiredMessage="Você precisa informar um e-mail"/>
+
+                    <p:outputLabel for="studentPassword">Senha:</p:outputLabel>
+                    <p:outputLabel for="studentRPassword">Repetir Senha:</p:outputLabel>
+                    <p:password id="studentPassword"  required="true" requiredMessage="Você precisa informar uma senha" value="#{alunoBean.pessoa.senha}"/>
+                    <p:password id="studentRPassword"  required="true" requiredMessage="Você precisa reinformar a senha" value="#{alunoBean.pessoa.testSenha}"/>
+
+                 
+         
+
+
+                </h:panelGrid>
+
+                <p:commandButton id="btLogin" style="margin-left: 38%" value="Cadastrar" action="#{alunoBean.salvar(request.userPrincipal.name)}" /><br/>
+                <h:messages></h:messages>
+
+
+
+            </h:form>
+        </div>
+
+        <div id="imgRight">
+            <!--imagem direita-->
+        </div>
+
+    </h:body>
+</html>
+

@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>SPORTECH BADMINTON</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link type="text/css" href="css/formatacao.css" rel="stylesheet"/>
+    </h:head>
+    <h:body>
+
+        <div id="header">
+            <!--cabeçalho-->
+        </div>
+
+        <div id="imgLeft">
+            <!--imagem esquerda-->
+        </div>
+
+        <div id="login">
+            <h:form>
+                <h:panelGrid columns="2" cellspacing="40px" style="margin: 30px;">
+                    <p:outputLabel for="tfLogin" id="lbLogin">Login: </p:outputLabel>
+                    <p:inputText id="tfLogin"/>
+                
+                
+                    <p:outputLabel for="tfPassword" id="lbPassword">Senha: </p:outputLabel>
+                    <p:password id="tfPassword"/>
+                </h:panelGrid>
+                
+                <p:commandButton id="btLogin" value="Acessar"/><br/>
+                
+                <h:link id="forgotPw">Esqueceu sua senha?</h:link>
+
+            </h:form>
+        </div>
+
+        <div id="imgRight">
+            <!--imagem direita-->
+        </div>
+
+    </h:body>
+</html>
+

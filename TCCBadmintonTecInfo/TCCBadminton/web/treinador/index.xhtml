@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Sportech badminton</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script name="jquery/jquery.js" library="primefaces"></script>
+        <script type="text/javascript" src="pt.js"></script>
+
+        <h:outputStylesheet library="css" name="formatacao_index.css"/>
+
+    </h:head>
+    <h:body style="background-image: url(../resources/img/backgroundSportechInteiro.png)">
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="north"  header="BADMINTON SPORTECH" style=" opacity: 0.9;  "  >
+
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" size="160" header="FERRAMENTAS" style=" opacity: 0.9;" >
+                <h:button outcome="cadastroExercicio" style="border-color: white;width: 100%; height: 35px; background-color:  rgba(150,200,200,0.1); border-radius: 7px" value="Exercícios"></h:button>
+                <h:button outcome="cadastroGrupo" style="border-color: white;width: 100%; height: 35px; background-color:  rgba(150,200,200,0.1); border-radius: 7px" value="Grupos"></h:button>
+                <h:button outcome="cadastroTreino" style="border-color: white;width: 100%; height: 35px; background-color:  rgba(150,200,200,0.1); border-radius: 7px" value="Treino"></h:button>
+                <h:button outcome="cadastroDeAlunos" style="border-color: white;width: 100%; height: 35px; background-color:  rgba(150,200,200,0.1); border-radius: 7px" value="Alunos"></h:button>
+                <h:button outcome="calendarioTreinador" style="border-color: white;width: 100%; height: 35px; background-color:  rgba(150,200,200,0.1); border-radius: 7px" value="Calendário"></h:button>
+                <h:button  outcome="bancoDeExercicios"  style="border-color: white;width: 100%; height: 35px; background-color:  rgba(150,200,200,0.1); border-radius: 7px" value="Banco Exercício"></h:button>
+                <h:button outcome="avaliacaoAluno" style="border-color: white;width: 100%; height: 35px; background-color:  rgba(150,200,200,0.1); border-radius: 7px" value="Avaliações"></h:button>
+
+            </p:layoutUnit>
+
+
+
+
+
+            <p:layoutUnit position="center" style="padding: 20px; opacity: 0.9; ">
+                <ui:insert name="principales"></ui:insert>
+                <p:tabView>oi</p:tabView>
+            </p:layoutUnit>
+
+
+        </p:layout>
+
+    </h:body>
+</html>
